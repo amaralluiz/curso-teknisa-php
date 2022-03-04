@@ -121,7 +121,7 @@ Operadores artméticos são utilizados para realizações de cálculos matemáti
 Observação: O PHP segue a ordem de operaçõs matemáticas para cálculos complexos.
 
 Sintaxe:
-```
+```php
 <?php
 $a = 3 + 4; // Resultado 7
 $b = 2 - 1; // Resultado 1
