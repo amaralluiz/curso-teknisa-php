@@ -41,7 +41,7 @@ Um objeto é uma entidade com um determinado comportamento definido por seus mé
 
 Sintaxe:
 
-```
+```php
 <?php
 
 class Carro
@@ -97,7 +97,7 @@ Um operador de atribuição é utilizado para definir uma variável atribuindo-l
 O operador básico de atribuição é `=`.
 
 Sintaxe:
-```
+```php
 <?php
 $a = 10; // Atribui 10 em $a
 $a += 5; // Soma 5 em $a
