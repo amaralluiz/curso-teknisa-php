@@ -23,14 +23,14 @@ Sintaxe: `$a = 1.234;`
 
 Uma string é uma série de carácteres, onde um caractere é o mesmo que um byte.  
 
-Sintaxe: `$a = 'String com aspas simples';`
+Sintaxe: `$a = 'String com aspas simples';`  
 `$b = "String com aspas duplas";`
 
 ### Tipo array
 
 Array é uma lista de valores armazenados na memória, os quais podem ser de tipos diferentes (números, strings, objetos) e podem ser acessados a qualquer momento, pois cada valor é relacionado a uma chave. Um array também pode crescer dinamicamente com adição de novos itens.
 
-Sintaxe: `$a = array('Luiz', 'Raíssa', 'Donnie');`
+Sintaxe: `$a = array('Luiz', 'Raíssa', 'Donnie');`  
 `$b = ['Luiz', 'Raíssa', 'Donnie'];`
 
 Observação: No PHP, arrays iniciam na posição 0.
@@ -84,6 +84,7 @@ Ao converter para bool, os seguintes valores são considerados `false`:
 Observação: o tipo -1 é considerado `true`, como qualquer outro número que não seja zero, tanto negativo quanto positivos.
 
 Sintaxe: `$a = true;`
+
 `$b = false;`
 
 ## Operadores
