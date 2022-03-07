@@ -97,6 +97,7 @@ Um operador de atribuição é utilizado para definir uma variável atribuindo-l
 O operador básico de atribuição é `=`.
 
 Sintaxe:
+
 ```php
 <?php
 $a = 10; // Atribui 10 em $a
@@ -125,9 +126,9 @@ Sintaxe:
 <?php
 $a = 3 + 4; // Resultado 7
 $b = 2 - 1; // Resultado 1
-$c -= 5; // Subtrai 5 em $a
-$a *= 5; // Multiplica $a por 5
-$a /= 5; // Divide $a por 5
+$c = 2 * 2; // Resultado 4
+$d = 6 / 3; // REsultado 2
+$e = 7 % 2; // Resultado 1
 ```
 
 ### Relacionais
@@ -146,19 +147,116 @@ Operadores relacionais são utilizados para realizar comparações entre valores
 
 ### Lógicos
 
-## Estruturas de controle
+Operadores lógicos são utilizados para combinar expressões lógicas entre si, agrupando testes condicionais.
 
-### IF
+| Operador   | Operação    | Resultado                                                    |
+|------------|-------------|--------------------------------------------------------------|
+| $a and $b  | AND/E       | Verdade se tanto $a quanto $b forem verdadeiros              |
+| $a or $b   | OR/OU       | Verdade se $a ou $b forem verdadeiros                        |
+| $a xor $b  | XOR         | Verdadeiro se $a ou $b forem verdadeiros, de forma exclusiva |
+| !$a        | NOT/Negação | Verdadeiro se $a for false                                   |
+| $a && $b   | AND/E       | Verdade se tanto $a quanto $b forem verdadeiros              |
+| $a \|\| $b | OU/OU       | Verdade se $a ou $b forem verdadeiros                        |
+
+Observação: `or` e `and` têm precedência menor que `&&` ou `||`.
+
+## Estruturas de Controle
+
+Uma estrutura de controle é um bloco de programação que analisa variáveis e escolhe uma direção para seguir baseada em parâmetros pré-definidos.
+
+### Estruturas de seleção
+
+#### IF
+
+Sintaxe:
+
+```php
+<?php
+if(expressão1) {
+    // comandos se a expressão é verdadeira
+} else if(expressão2) {
+    // comandos se a expressão2 for verdadeira
+} else {
+    // comandos se expressão 1 e 2 forem falsas
+}
+```
+
+O `else if` é utilizado caso queira realizar mais verificações e será executado somente se o bloco anterior for falso.
 
 ### SWITCH
 
-## Estruturas de fluxo
+Sintaxe:
 
-### FOR
+```php
+<?php
+switch($variavel) {
+    case valor1:
+        // comandos
+        break;
+    case valor2:
+        // comandos
+        break;
+    default:
+        // comandos
+}
+```
 
-### WHILE
+Observações: o comando default será executado somente se nenhuma das verficações retornarem falso.
 
-### FOREACH
+### Estruturas de repetição
+
+Estrutura que permite executar mais de uma vez o mesmo comando ou conjunto de comandos, de acordo com uma condição ou com um contador.
+
+#### FOR
+
+Sintaxe:
+
+```php
+<?php
+for(expr1; expr2; expr3) {
+    // comandos
+}
+```
+expr1: Valor inicial da variável contadora.  
+expr2: Condição de execução. Enquanto for verdade o bloco de comandos será executado.  
+expr3: Valor a ser incrementado após cada execução.  
+
+Exemplo:
+
+```php
+<?php
+for($i = 0; $i <= 10; $i++>) {
+    echo $i .PHP_EOL;
+}
+
+```
+
+#### WHILE
+
+Sintaxe:
+
+```php
+<?php
+while(expr1) {
+    // comandos
+}
+```
+expr1: Expressão que deverá ser verdade para execução do bloco.
+
+Exemplo:
+
+```php
+<?php
+$i = 0;
+while($i <= 10>) {
+    echo $i . PHP_EOL;
+    $i++;
+}
+```
+
+## Arrays
+
+
 
 ## Funções
 
