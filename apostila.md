@@ -254,11 +254,119 @@ while($i <= 10>) {
 }
 ```
 
-## Arrays
+## Manipulação de Arrays
+
+Arrays são acessados mediante uma posição, como um índice numérico.  
+
+Podemos criar um array das seguintes formas:
+
+```php
+<?php
+
+// Primeira forma, utilizando array()
+
+$cores = array('vermelho', 'azul', 'verde');
+
+// Segunda forma, utilizando sintaxe resumida
+
+$cores = ['vermelho', 'azul', 'verde'];
+
+// Terceira forma, adicionando valores
+
+$cores[] = 'vermelho';
+$cores[] = 'azul';
+$cores[] = 'verde';
+
+```
+
+Para acessar o array indexado, basta indicar o seu índice entre colchetes:
+
+```php
+<?php
+echo $cores[0]; // resultado = vermelho
+echo $cores[1]; // resultado = azul
+echo $cores[2]; // resultado = verde
+```
+
+### Arrays associativos
+
+Os arrays no PHP são associativos, pois contêm uma chave de acesso para cada posição.
+
+Podemos criar arrays associativos das seguintes formas:
+
+```php
+<?php
+
+// Utilizando array()
+
+$cores = array(
+    'vermelho' => 'FF0000', 
+    'azul' => '0000FF',
+    'verde' => '00FF00',
+    );
+
+// Utilizando sintaxe resumida e adicionando valores
+
+$cores = [];
+$cores['vermelho'] = 'FF0000';
+$cores['azul'] = '0000FF';
+$cores['verde'] = '00FF00';
+```
+
+Para acessar, basta indicar a sua chave entre colchetes:
+
+```php
+<?php
+
+echo $cores['vermelho']; // resultado FF0000
+echo $cores['azul']; // resultado '0000FF'
+echo $cores['verde'];// resultado '00FF00';
+```
+
+### Iterações
+
+Os arrays podem ser iterados no PHP pelo operador `foreach`, que percorre cada uma das posições do array.
+
+Sintaxe:
+
+```php
+<?php
+
+$frutas = array();
+$frutas['cor'] = 'vermelho';
+$frutas['sabor'] = 'doce';
+$frutas['formato'] = 'redondo';
+$frutas['nome'] = 'maçã';
+
+foreach($frutas as $chave => $fruta) {
+    echo "$chave => $fruta \n";
+}
+```
+
+### Arrays multidimensionais
+
+Arrays multidimensionais ou matrizes são arrays nos quais algumas de suas posições podem conter outros arrays.
 
 
 
 ## Funções
+
+Uma função é um pedaço de código com um objetivo específico, encapsulado sob uma estrutura única que recebe um conjunto de parâmetros e retorna um dado. Uma função é declarada uma única vez, mas pode ser utilizada diversas vezes.
+
+Sintaxe:
+
+```php
+<?php
+
+function nomeDaFuncao (arg1, arg2, arg3)
+{
+    $valor = $arg1, $arg2, $arg3;
+    return $valor;
+}
+```
+
+Variáveis declaradas dentro do escopo de uma função são locais, ou seja, só podem ser acessadas dentro do escopo daquela função.  
+Para acessar uma variável fora do escopo de uma função sem passá-la como argumento, ela deve ser criada no escopo acima ou como global.
 
 # PHP Moderno
 
