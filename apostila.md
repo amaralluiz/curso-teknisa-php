@@ -347,7 +347,111 @@ foreach($frutas as $chave => $fruta) {
 
 Arrays multidimensionais ou matrizes são arrays nos quais algumas de suas posições podem conter outros arrays.
 
+Podemos criar arrays multidimensionais das seguintes formas:
 
+```php
+<?php
+
+// Utilizando array()
+
+$carros = array(
+    'Palio' => array(
+        'cor' => 'azul',
+        'potencia' => '1.0',
+        'opcionais' => 'Ar Cond.'
+    ),
+    'Corsa' => array(
+        'cor' => 'cinza',
+        'potencia' => '1.3',
+        'opcionais' => 'mp3' 
+    ),
+    'Gol' => array(
+        'cor' => 'branco',
+        'potencia' => '1.0',
+        'opcionais' => 'metalica' 
+    )
+);
+
+echo $carros['Palio']['opcionais'];
+
+// Utilizando sintaxe resumida e adicionando valores
+
+$carros = [];
+$carros['Palio']['cor'] = 'azul';
+$carros['Palio']['potencia'] = '1.0';
+$carros['Palio']['opcionais'] = 'Ar Cond.';
+$carros['Corsa']['cor'] = 'cinza';
+$carros['Corsa']['potencia'] = '1.3';
+$carros['Corsa']['opcionais'] = 'mp3';
+$carros['Gol']['potencia'] = 'branco';
+$carros['Gol']['cor'] = '1.0';
+$carros['Gol']['opcionais'] = 'metalica';
+
+echo $carros['Palio']['opcionais'];
+```
+
+Para realizar iterações em um array multidimensional, é preciso observar quantos níveis ele tem.
+
+```php
+<?php
+
+$carros = [];
+$carros['Palio']['cor'] = 'azul';
+$carros['Palio']['potencia'] = '1.0';
+$carros['Palio']['opcionais'] = 'Ar Cond.';
+$carros['Corsa']['cor'] = 'cinza';
+$carros['Corsa']['potencia'] = '1.3';
+$carros['Corsa']['opcionais'] = 'mp3';
+$carros['Gol']['potencia'] = 'branco';
+$carros['Gol']['cor'] = '1.0';
+$carros['Gol']['opcionais'] = 'metalica';
+
+foreach ($carros as $modelo => $caracteristicas) {
+    echo "=> modelo $modelo\n";
+    foreach ($caracteristicas as $caracteristica => $valor) {
+        echo " - caracteristica $caracteristica => $valor\n";
+    }
+}
+
+```
+
+### Funções para manipulação de Arrays
+
+#### array_merge
+
+Mescla dois ou mais, adicionando um array ao final de outro, resultando em um novo array. Se ambos os arrays tiverem conteúdo indexado pela mesma chave, o segundo array irá se sobrepor ao primeiro.
+
+```php
+<?php
+$a = ['verde', 'azul'];
+$a = ['vermelho', 'amarel'];
+$c = array_merge($a, $b);
+var_dump($c);
+```
+
+### explode
+
+Converte uma string em um array, quebrando os elementos por meio de um separador.
+
+### implode
+
+Converte um array em uma string, agrupando os elementos do array por meio de um elemento "cola".
+
+Exemplo de implode e explode:
+
+```php
+<?php
+
+// Explode
+
+$string = "10/05/2015";
+var_dump(explode("/", $string));
+
+// Implode
+
+$array = [10, 5, 2015];
+var_dump(implode('/', $array));
+```
 
 ## Funções
 
