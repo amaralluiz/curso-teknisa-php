@@ -472,14 +472,16 @@ function nomeDaFuncao (arg1, arg2, arg3)
 Variáveis declaradas dentro do escopo de uma função são locais, ou seja, só podem ser acessadas dentro do escopo daquela função.  
 Para acessar uma variável fora do escopo de uma função sem passá-la como argumento, ela deve ser criada no escopo acima ou como global.
 
-# PHP Moderno
+# PSR
 
-## Namespaces
+PSR, ou PHP Standards Recommendations, são as recomendaçãoes padrões do PHP. Elas foram criadas por um grupo chamado PHP-FIG, que significa PHP Framework Interop Group e é um grupo formado por desenvolvedores da comunidade PHP em 2009.
 
-## Autoloader
+O intuito original do grupo era definir recomendações que fossem aplicadas aos Frameworks PHP participantes para facilitar a interoperabilidade entre os frameworks que cresciam rapidamente.
 
-## PSR
+Devido a grande utilização de PHP em outros tipos de aplicações além de frameworks, como CMS, o grupo passou a possuir membros de outros tipos de projetos, não somente frameworks.
 
+As recomendações criadas pelo grupo são agrupadas em uma PHP Standard Recommendation (PSR). Cada PSR possui recomendações sobre um tema específicio, como a PSR-12 que fala sobre padronização de escrita de código PHP.
 
+[Aqui](https://girorme.github.io/2019/09/04/psr-12-pt-br/) você pode ler a PSR-12 traduzida para português.
 
 # Criação de API Utilizando Laravel
