@@ -228,7 +228,6 @@ Exemplo:
 for($i = 0; $i <= 10; $i++>) {
     echo $i .PHP_EOL;
 }
-
 ```
 
 #### WHILE
@@ -320,7 +319,7 @@ Para acessar, basta indicar a sua chave entre colchetes:
 
 echo $cores['vermelho']; // resultado FF0000
 echo $cores['azul']; // resultado '0000FF'
-echo $cores['verde'];// resultado '00FF00';
+echo $cores['verde'];// resultado '00FF00'
 ```
 
 ### Iterações
@@ -474,11 +473,16 @@ Sintaxe:
 ```php
 <?php
 
+// criação
+
 function nomeDaFuncao (arg1, arg2, arg3)
 {
-    $valor = $arg1, $arg2, $arg3;
+    $valor = $arg1 + $arg2 + $arg3;
     return $valor;
 }
+
+// chamada
+nomeDaFuncao(arg1, arg2, arg3);
 ```
 
 Variáveis declaradas dentro do escopo de uma função são locais, ou seja, só podem ser acessadas dentro do escopo daquela função.  
