@@ -424,7 +424,7 @@ Mescla dois ou mais, adicionando um array ao final de outro, resultando em um no
 ```php
 <?php
 $a = ['verde', 'azul'];
-$a = ['vermelho', 'amarel'];
+$b = ['vermelho', 'amarel'];
 $c = array_merge($a, $b);
 var_dump($c);
 ```
@@ -436,7 +436,7 @@ Adiciona elementos ao final de um array.
 ```php
 <?php
 $a = ['verde', 'azul'];
-$a = ['vermelho', 'amarelo'];
+$b = ['vermelho', 'amarelo'];
 array_push($a, $b);
 var_dump($a);
 ```
