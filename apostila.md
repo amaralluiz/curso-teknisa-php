@@ -46,8 +46,8 @@ Sintaxe:
 
 class Carro
 {
-    $modelo;
-    function $darPartida()
+    public $modelo;
+    function darPartida()
     {
         echo "Dando partida no carro modelo $this->modelo...";
     }
@@ -75,7 +75,7 @@ Por ser dinamicamente tipado, qualquer valor será convertido automaticamente se
 
 Ao converter para bool, os seguintes valores são considerados `false`:
 - O próprio booleano `false`;
-- O interno 0;
+- O inteiro 0;
 - Os pontos flutuantes 0.0 e -0.0;
 - Uma string vazia e a string `"0"`;
 - Um array sem elementos;
@@ -119,7 +119,7 @@ Operadores artméticos são utilizados para realizações de cálculos matemáti
 | /        | Divisão                      |
 | %        | Módulo, ou resto, da divisão |
 
-Observação: O PHP segue a ordem de operaçõs matemáticas para cálculos complexos.
+Observação: O PHP segue a ordem de operações matemáticas para cálculos complexos.
 
 Sintaxe:
 ```php
@@ -127,7 +127,7 @@ Sintaxe:
 $a = 3 + 4; // Resultado 7
 $b = 2 - 1; // Resultado 1
 $c = 2 * 2; // Resultado 4
-$d = 6 / 3; // REsultado 2
+$d = 6 / 3; // Resultado 2
 $e = 7 % 2; // Resultado 1
 ```
 
@@ -183,7 +183,7 @@ if(expressão1) {
 
 O `else if` é utilizado caso queira realizar mais verificações e será executado somente se o bloco anterior for falso.
 
-### SWITCH
+#### SWITCH
 
 Sintaxe:
 
@@ -201,7 +201,7 @@ switch($variavel) {
 }
 ```
 
-Observações: o comando default será executado somente se nenhuma das verficações retornarem falso.
+Observações: o comando default será executado somente se nenhuma das verficações retornarem verdadeiro.
 
 ### Estruturas de repetição
 
@@ -248,7 +248,7 @@ Exemplo:
 ```php
 <?php
 $i = 0;
-while($i <= 10>) {
+while($i <= 10) {
     echo $i . PHP_EOL;
     $i++;
 }
@@ -338,8 +338,8 @@ $frutas['sabor'] = 'doce';
 $frutas['formato'] = 'redondo';
 $frutas['nome'] = 'maçã';
 
-foreach($frutas as $chave => $fruta) {
-    echo "$chave => $fruta \n";
+foreach($frutas as $chave => $valor) {
+    echo "$chave => $valor \n";
 }
 ```
 
@@ -429,11 +429,23 @@ $c = array_merge($a, $b);
 var_dump($c);
 ```
 
-### explode
+#### array_push
+
+Adiciona elementos ao final de um array.
+
+```php
+<?php
+$a = ['verde', 'azul'];
+$a = ['vermelho', 'amarelo'];
+array_push($a, $b);
+var_dump($a);
+```
+
+#### explode
 
 Converte uma string em um array, quebrando os elementos por meio de um separador.
 
-### implode
+#### implode
 
 Converte um array em uma string, agrupando os elementos do array por meio de um elemento "cola".
 
