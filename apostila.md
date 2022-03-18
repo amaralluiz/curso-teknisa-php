@@ -1,6 +1,6 @@
 # Introdução ao PHP
 
-PHP é uma linguagem de programação que foi criada em 1995 por Rasmus Lerdof.  
+PHP é uma linguagem de programação que foi criada em 1995 por Rasmus Lerdorf.  
 Ela é considerada uma linguagem interpretada e dinamicamente tipada.
 
 ## Variáveis
@@ -495,5 +495,6 @@ Devido a grande utilização de PHP em outros tipos de aplicações além de fra
 As recomendações criadas pelo grupo são agrupadas em uma PHP Standard Recommendation (PSR). Cada PSR possui recomendações sobre um tema específicio, como a PSR-12 que fala sobre padronização de escrita de código PHP.
 
 [Aqui](https://girorme.github.io/2019/09/04/psr-12-pt-br/) você pode ler a PSR-12 traduzida para português.
+
 
 # Criação de API Utilizando Laravel
