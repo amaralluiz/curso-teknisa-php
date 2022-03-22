@@ -527,7 +527,7 @@ Dessa forma, já setamos que o banco utilizado é o sqlite. O Laravel por padrã
 
 ## Criação da tabela utilizando Migration
 
-Iremos utilizar a CLI que vem no Laravel que é a artisan para rodar alguns comandos que aumentam a nossa produtividade. O comando que vamos utilizar no momento será o `php artisan make:migration create_artigos_table --create=devs`. Ele utilizará o php para rodar o artisan criando uma migration chamada create_artigos_table e com o nome da tabela como devs.
+Iremos utilizar a CLI que vem no Laravel que é a artisan para rodar alguns comandos que aumentam a nossa produtividade. O comando que vamos utilizar no momento será o `php artisan make:migration create_devs_table --create=devs`. Ele utilizará o php para rodar o artisan criando uma migration chamada create_devs_table e com o nome da tabela como devs.
 
 Agora iremos abrir este arquivo, ele fica dentro das pastas `database/migrations` e seu nome será a data de criação e no final `create_devs_table.php`. Nele iremos adicionar as seguintes linhas após `$table->id();`:
 
