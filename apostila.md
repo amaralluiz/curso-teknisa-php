@@ -502,3 +502,144 @@ As recomendações criadas pelo grupo são agrupadas em uma PHP Standard Recomme
 
 
 # Criação de API Utilizando Laravel
+
+## Iniciado o projeto
+
+Para iniciar o projeto, precisaremos estar com o PHP e o Composer já instalados.
+O primeiro passo é ir na pasta onde está instalado o seu PHP e procurar o arquivo `php.ini`. Caso ele não exista, basta criar uma cópia do arquivo `php.ini-development` e alterar seu nome para `php.ini`. Após isso, abra utilizando seu editor de texto, podendo ser até o bloco de notas, e procure por `extension=openssl` e `extension=pdo_sqlite`, nessas duas linhas retire o `;` que inicia ambas.
+
+Após isso, abra seu terminal, navegue até a pasta que deseja que seu projeto será criado e rode o comando `composer create-project laravel/laravel:^8.0 teknisa-dev-api` no terminal. Ele rodará o composer, criando um projeto utilizando o Laravel 8 com o nome do projeto como teknisa-dev-api.
+
+## Criando e configurando o banco de dados
+
+Com o projeto já criado iremos no nosso arquivo `.env` e procurar por `DB_CONNECTION`, precisamos deixar ele dessa forma:
+
+```
+DB_CONNECTION=sqlite
+#DB_HOST=127.0.0.1
+#DB_PORT=3306
+#DB_DATABASE=laravel
+#DB_USERNAME=root
+#DB_PASSWORD=
+```
+
+Dessa forma, já setamos que o banco utilizado é o sqlite. O Laravel por padrão procurará o arquivo de banco de dados dentro da pasta `database`, então dentro dela crie um arquivo chamado `database.sqlite`. Este será nosso banco de dados.
+
+## Criação da tabela utilizando Migration
+
+Iremos utilizar a CLI que vem no Laravel que é a artisan para rodar alguns comandos que aumentam a nossa produtividade. O comando que vamos utilizar no momento será o `php artisan make:migration create_artigos_table --create=devs`. Ele utilizará o php para rodar o artisan criando uma migration chamada create_artigos_table e com o nome da tabela como devs.
+
+Agora iremos abrir este arquivo, ele fica dentro das pastas `database/migrations` e seu nome será a data de criação e no final `create_devs_table.php`. Nele iremos adicionar as seguintes linhas após `$table->id();`:
+
+```php
+$table->string('name');
+$table->string('email');
+$table->integer('age');
+$table->string('picture');
+$table->text('programmingLanguages');
+```
+
+Aqui estamos definindo os campos que precisamos dentro da nossa tabela, conforme o projeto do Figma. As migrations servem como um controle de versão para nosso esquema de banco de dados. Dessa forma não precisamos criar nenhum campo ou tabela manualmente após realizar alteração no código.
+
+Para rodar a migration utilizamos o comando `php artisan migrate` no nosso terminal. Dessa forma o artisan irá executar todos os arquivos migrate do projeto e podemos ver no `database.sqlite` que a tabela `devs` foi criada. Para ver podemos utilizar por exempo o [SQLite Browser](https://sqlitebrowser.org/).
+
+## Criação de Model, Controller e Resource
+
+Como temos nossa tabela pronta, podemos criar nossos modelos, controllers e resources. Primeiro vamos criar o Model com o comando `php artisan make:model Dev`, com ele criamos um model com o nome `Dev` na pasta `app/Models`. O nosso Model será a classe que utilizará o Eloquente, que é o ORM utilizado pelo Laravel, para fazer a tradução do objeto entidade-relacional do banco para um objeto no PHP. 
+
+Após isso, vamos criar nosso resource com o `php artisan make:resource Dev`, este comando irá criar um resource com o nome `Dev` na pasta `app/Http/Resources`. Este arquivo será o responsável por traduzir o nosso Dev para um retorno amigável em array, para passarmos via JSON na resposta da requisição que o cliente fará para a nossa API.  
+Neste arquivo iremos retirar o `return parent::toArray($request);` e adicionar o seguinte:
+
+```php
+return [
+    'id' => $this->id,
+    'name' => $this->name,
+    'email' => $this->email,
+    'age' => $this->age,
+    'picture' => $this->picture,
+    'programmingLanguages' => $this->programmingLanguages
+    ];
+```
+
+Com isso iremos definir o que é cada campo do nosso retorno conforme o que foi definido no nosso projeto.
+
+Agora podemos criar nosso controller, que é de fato quem controlará o que cada rota da nossa API irá fazer. Para criar o controller o comando é `php artisan make:controller DevController --resource`.  
+O primeiro passo neste arquivo é colocar as dependências que vamos utilizar no início do arquivo. Iremos colocar as seguintes linhas logo após a definição do `namespace`:
+
+```php
+use App\Models\Dev as Dev;
+use App\Http\Resources\Dev as DevResource;
+```
+
+Com isso nosso controller saberá onde procurar quando formos utilizar as classes Dev e DevResource do nosso Model e Resource.
+
+Depois disso, nas definições de função da classe `DevController` iremos definir as seguintes funções:
+
+```php
+public function index()
+{
+    $devs = Dev::paginate(100);
+    return DevResource::collection($devs);
+}
+
+public function show($id){
+    $dev = Dev::findOrFail( $id );
+    return new DevResource( $dev );
+}
+
+public function store(Request $request){
+    $dev = new Dev;
+    $dev->name = $request->input('name');
+    $dev->email = $request->input('email');
+    $dev->age = $request->input('age');
+    $dev->picture = $request->input('picture');
+    $dev->programmingLanguages = $request->input('programmingLanguages');
+    
+    if( $dev->save() ){
+        return new DevResource( $dev );
+    }
+}
+
+public function update(Request $request){
+    $dev = Dev::findOrFail( $request->id );
+    $dev->name = $request->input('name');
+    $dev->email = $request->input('email');
+    $dev->age = $request->input('age');
+    $dev->picture = $request->input('picture');
+    $dev->programmingLanguages = $request->input('programmingLanguages');
+
+    if( $dev->save() ){
+        return new DevResource( $dev );
+    }
+} 
+
+public function destroy($id){
+    $dev = Dev::findOrFail( $id );
+    if( $dev->delete() ){
+        return new DevResource( $dev );
+    }
+}
+```
+
+Cada uma dessas funções será a responsável por uma das ações do nosso CRUD.  
+Na função `index` estamos somente buscando os devs salvos no nosso banco de dados, paginando ele com 100 em cada página e retornando uma coleção de devs utilizando a `collection` do `DevResource`.  
+Na função `show` iremos utilizar o método `findOrFail` do próprio eloquent para encontrar o id de um dev que será passado via QueryString numa das rotas da nossa API.  
+Na função `store` é onde iremos salvar nosso dev no banco de dados. Nele criaremos uma instância de Dev e iremos popular seus campos de acordo com o que chegará no nosso Request. Depois iremos acionar o método save e caso ele retorne sucesso, será retornado o dev salvo para o cliente.  
+Na função `update` vamos utilizar uma lógica parecida com a função `store`, mas no local de instanciar um novo dev, iremos buscar o dev passado via QueryString e atualizar seus campos conforme o Request passado pelo cliente. Depois disso o método save será chamado e caso dê sucesso será devolvido o dev atualizado para o cliente.  
+Por último, na função `destroy` iremos buscar o dev passado por QueryString e chamar o método delete, caso dê sucesso vamos retornar o dev deletado.
+
+## Criando as rotas
+
+Agora para finalizar podemos criar nossas rotas. Podemos ir na pasta `routes` e no arquivo `api.php` vamos adicionar as seguintes linhas:
+
+```php
+Route::get('devs', [DevController::class, 'index']);
+Route::get('dev/{id}', [DevController::class, 'show']);
+Route::post('dev', [DevController::class, 'store']);
+Route::put('dev/{id}', [DevController::class, 'update']);
+Route::delete('dev/{id}', [DevController::class, 'destroy']);
+```
+
+Cada uma dessas rotas ficará responsável por um dos métodos que criamos no nosso `DevController` de acordo com o padrão REST.
+
+Depois disso podemos utilizar o comando `php artisan serve` para subir nosso projeto em um ambiente de desenvolvimento. Com isso já podemos utilizar o Postman para realizar os testes da nossa api nas rotas corretas. Por padrão o artisan subirá a aplicação no `localhost:8000` e como iremos utilizar a api, a url completá será `http://127.0.0.1:8000/api/`
