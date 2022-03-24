@@ -22,7 +22,7 @@ class Dev extends JsonResource
         'email' => $this->email,
         'age' => $this->age,
         'picture' => $this->picture,
-        'programmingLanguages' => $this->programmingLanguages
+        'programmingLanguages' => explode(', ', $this->programmingLanguages)
        ];
     }
 }
