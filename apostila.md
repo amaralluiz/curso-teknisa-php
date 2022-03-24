@@ -557,11 +557,11 @@ return [
     'email' => $this->email,
     'age' => $this->age,
     'picture' => $this->picture,
-    'programmingLanguages' => $this->programmingLanguages
+    'programmingLanguages' => explode(', ', $this->programmingLanguages)
     ];
 ```
 
-Com isso iremos definir o que é cada campo do nosso retorno conforme o que foi definido no nosso projeto.
+Com isso iremos definir o que é cada campo do nosso retorno conforme o que foi definido no nosso projeto. Usaremos o método `explode()` no retorno de `programmingLanguages` para termos ele retornando em formato de array, o que irá facilitar para quem irá trabalhar este campo.
 
 Agora podemos criar nosso controller, que é de fato quem controlará o que cada rota da nossa API irá fazer. Para criar o controller o comando é `php artisan make:controller DevController --resource`.  
 O primeiro passo neste arquivo é colocar as dependências que vamos utilizar no início do arquivo. Iremos colocar as seguintes linhas logo após a definição do `namespace`:
